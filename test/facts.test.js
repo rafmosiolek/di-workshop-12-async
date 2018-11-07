@@ -43,7 +43,12 @@ describe('GET /facts/:factId', function() {
   // TASK 2:
   // copy a test from above and adapt it to check that a GET request to
   // /facts/1 returns a 200 status code
-  it('returns 200 when the fact exists')
+  it('returns 200 when the fact exists', (done) => {
+    api
+      .get('/facts/1')
+      .expect(200)
+      .end(done)
+  })
 
   // checks to see if the body matches a particular object:
   it('returns the fact with id 1', function(done) {
@@ -59,12 +64,25 @@ describe('GET /facts/:factId', function() {
   })
 
   // TASK 3:
-  // copy a test from above and adapt it to check that /facts/19 returns the
+  // copy a test from above and adapt it to check that /facts/5 returns the
   // fact "Dogs have sweat glands in between their paws."
-  it('returns the fact with id 5')
+  it('returns the fact with id 5', (done) => {
+    api
+      .get('/facts/5')
+      .expect({
+        id: 5,
+        fact: "Dogs have sweat glands in between their paws."
+      })
+      .end(done)
+  })
 
   // TASK 4:
   // copy a test from above and adapt it to check that a request to a
   // non-existant fact id (e.g. /facts/12345) returns a 404 status code
-  it('returns 404 if the fact does not exist')
+  it('returns 404 if the fact does not exist', (done) => {
+    api
+      .get('/facts/123456')
+      .expect(404)
+      .end(done)
+  })
 })
