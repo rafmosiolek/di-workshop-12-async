@@ -29,7 +29,14 @@ describe('GET /facts/random', function() {
   // TASK 1:
   // copy the previous test and adapt it to check that response contains a
   // string called `fact`:
-  it('returns ths fact content')
+  it('returns ths fact content', (done) => {
+    api
+      .get('/facts/random')
+      .expect((response) => {
+        expect(response.body.fact).to.be.a('string')
+      })
+      .end(done);
+  })
 })
 
 describe('GET /facts/:factId', function() {
